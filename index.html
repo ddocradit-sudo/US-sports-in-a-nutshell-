@@ -1,0 +1,1821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>US Sports Oversimplified</title>
+
+<style>
+:root {
+    --blue: #123c69;
+    --dark-blue: #0b2545;
+    --red: #e63946;
+    --light: #f4f6f8;
+    --white: #ffffff;
+    --text: #17202a;
+    --gray: #66727e;
+    --border: #dfe4e8;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--light);
+    color: var(--text);
+}
+
+/* HEADER */
+
+header {
+    height: 65px;
+    background: var(--blue);
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+
+.menu-button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    width: 45px;
+}
+
+.logo-text {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+/* DROPDOWN */
+
+#menu {
+    display: none;
+    position: absolute;
+    top: 60px;
+    left: 10px;
+    width: 280px;
+    max-height: 80vh;
+    overflow-y: auto;
+    background: white;
+    color: var(--text);
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.3);
+    padding: 8px;
+}
+
+#menu.open {
+    display: block;
+}
+
+.menu-title {
+    font-weight: bold;
+    color: var(--blue);
+    padding: 10px;
+}
+
+.menu-item {
+    display: block;
+    width: 100%;
+    border: none;
+    background: white;
+    text-align: left;
+    padding: 11px;
+    cursor: pointer;
+    border-radius: 7px;
+    font-size: 15px;
+}
+
+.menu-item:hover {
+    background: #edf2f7;
+}
+
+/* MAIN */
+
+main {
+    max-width: 1150px;
+    margin: auto;
+    padding: 30px 18px 60px;
+}
+
+.hero {
+    background: white;
+    padding: 35px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 3px 15px rgba(0,0,0,.06);
+}
+
+.hero h1 {
+    font-size: 42px;
+    margin-top: 0;
+}
+
+.hero p {
+    color: var(--gray);
+    font-size: 18px;
+    max-width: 850px;
+}
+
+.section {
+    margin-top: 25px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 15px;
+}
+
+.card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    cursor: pointer;
+    transition: .15s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 7px 20px rgba(0,0,0,.1);
+}
+
+.card h3 {
+    margin-top: 0;
+}
+
+.muted {
+    color: var(--gray);
+}
+
+.back-button {
+    border: none;
+    background: none;
+    color: var(--blue);
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+
+/* TEAM */
+
+.team {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.team-logo {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
+
+.large-logo {
+    width: 80px;
+    height: 80px;
+}
+
+/* STATS */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+}
+
+.stat {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 17px;
+    border-radius: 10px;
+}
+
+.stat strong {
+    display: block;
+    font-size: 21px;
+    margin-top: 5px;
+}
+
+/* TIMELINE */
+
+.timeline {
+    border-left: 3px solid var(--blue);
+    padding-left: 22px;
+    margin-left: 8px;
+}
+
+.timeline-event {
+    position: relative;
+    margin-bottom: 22px;
+}
+
+.timeline-event::before {
+    content: "";
+    position: absolute;
+    left: -29px;
+    top: 6px;
+    width: 11px;
+    height: 11px;
+    background: var(--blue);
+    border-radius: 50%;
+}
+
+.timeline-year {
+    font-weight: bold;
+    color: var(--blue);
+}
+
+/* ROSTER */
+
+.roster {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 8px;
+}
+
+.player {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 10px;
+}
+
+/* PILLS */
+
+.pill {
+    display: inline-block;
+    background: #edf2f7;
+    padding: 6px 10px;
+    margin: 4px;
+    border-radius: 999px;
+    font-size: 13px;
+}
+
+/* SEARCH */
+
+.search {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    font-size: 16px;
+    margin: 10px 0 18px;
+}
+
+/* NOTICE */
+
+.notice {
+    background: #fff8e6;
+    border: 1px solid #efd28a;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.error {
+    background: #fff0f0;
+    border: 1px solid #e2aaaa;
+    color: #7b1e1e;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: var(--gray);
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    color: var(--gray);
+    padding: 25px;
+    font-size: 13px;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    main {
+        padding: 20px 12px 50px;
+    }
+
+    .hero {
+        padding: 24px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .logo-text {
+        font-size: 17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<button class="menu-button" onclick="toggleMenu()">☰</button>
+
+<div class="logo-text">
+US Sports Oversimplified
+</div>
+
+<div id="menu"></div>
+
+</header>
+
+<main id="app"></main>
+
+<footer>
+US Sports Oversimplified
+</footer>
+
+
+<script>
+
+/* =========================================================
+   SPORTS DATABASE
+========================================================= */
+
+const SPORTS = {
+
+    nfl: {
+        name: "Football",
+        league: "NFL",
+        path: "football/nfl",
+        teamSport: true
+    },
+
+    nba: {
+        name: "Basketball",
+        league: "NBA",
+        path: "basketball/nba",
+        teamSport: true
+    },
+
+    mlb: {
+        name: "Baseball",
+        league: "MLB",
+        path: "baseball/mlb",
+        teamSport: true
+    },
+
+    nhl: {
+        name: "Hockey",
+        league: "NHL",
+        path: "hockey/nhl",
+        teamSport: true
+    },
+
+    mls: {
+        name: "Soccer",
+        league: "MLS",
+        path: "soccer/usa.1",
+        teamSport: true
+    },
+
+    wnba: {
+        name: "Women's Basketball",
+        league: "WNBA",
+        path: "basketball/wnba",
+        teamSport: true
+    },
+
+    golf: {
+        name: "Golf",
+        league: "Golf",
+        teamSport: false
+    },
+
+    tennis: {
+        name: "Tennis",
+        league: "Tennis",
+        teamSport: false
+    }
+
+};
+
+
+/* =========================================================
+   INDIVIDUAL SPORTS
+========================================================= */
+
+const INDIVIDUAL_SPORTS = {
+
+    golf: {
+
+        history:
+        "Golf is one of the most important individual sports in American sports history. Professional golf developed from early clubs and tournaments into a nationwide and eventually worldwide sport. American golfers have played a major role in the sport's history, producing generations of champions and helping make events such as the Masters, U.S. Open and PGA Championship major sporting events.",
+
+        players: [
+            "Tiger Woods",
+            "Jack Nicklaus",
+            "Arnold Palmer",
+            "Ben Hogan",
+            "Sam Snead",
+            "Bobby Jones",
+            "Phil Mickelson",
+            "Walter Hagen",
+            "Byron Nelson",
+            "Tom Watson"
+        ]
+
+    },
+
+    tennis: {
+
+        history:
+        "Tennis became one of the most popular individual sports in the United States during the late nineteenth and twentieth centuries. American players have won major championships across many eras, while the US Open became one of the four Grand Slam tournaments. The sport has produced many influential champions in both men's and women's tennis.",
+
+        players: [
+            "Serena Williams",
+            "Venus Williams",
+            "Pete Sampras",
+            "Andre Agassi",
+            "Chris Evert",
+            "Bill Tilden",
+            "Billie Jean King",
+            "John McEnroe",
+            "Jimmy Connors",
+            "Helen Wills Moody"
+        ]
+
+    }
+
+};
+
+
+/* =========================================================
+   API
+========================================================= */
+
+const ESPN_API =
+"https://site.api.espn.com/apis/site/v2/sports";
+
+const WIKIPEDIA_API =
+"https://en.wikipedia.org/api/rest_v1/page/summary/";
+
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+const app = document.getElementById("app");
+
+function escapeHTML(value) {
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+async function getData(url) {
+
+    const response = await fetch(url);
+
+    if (!response.ok) {
+        throw new Error("Unable to load data.");
+    }
+
+    return await response.json();
+
+}
+
+
+function getRoute() {
+
+    return location.hash
+        .replace("#", "")
+        .split("/")
+        .filter(Boolean);
+
+}
+
+
+function navigate(route) {
+
+    location.hash = route;
+
+}
+
+
+function toggleMenu() {
+
+    document
+        .getElementById("menu")
+        .classList.toggle("open");
+
+}
+
+
+/* =========================================================
+   MENU
+========================================================= */
+
+function buildMenu() {
+
+    let html = "";
+
+    html += `<div class="menu-title">TEAM SPORTS</div>`;
+
+    for (const [key, sport] of Object.entries(SPORTS)) {
+
+        if (sport.teamSport) {
+
+            html += `
+            <button
+                class="menu-item"
+                onclick="navigate('sport/${key}'); closeMenu()">
+
+                ${escapeHTML(sport.league)}
+                — ${escapeHTML(sport.name)}
+
+            </button>
+            `;
+
+        }
+
+    }
+
+
+    html += `<div class="menu-title">INDIVIDUAL SPORTS</div>`;
+
+    for (const [key, sport] of Object.entries(SPORTS)) {
+
+        if (!sport.teamSport) {
+
+            html += `
+            <button
+                class="menu-item"
+                onclick="navigate('sport/${key}'); closeMenu()">
+
+                ${escapeHTML(sport.league)}
+
+            </button>
+            `;
+
+        }
+
+    }
+
+
+    document.getElementById("menu").innerHTML = html;
+
+}
+
+
+function closeMenu() {
+
+    document
+        .getElementById("menu")
+        .classList.remove("open");
+
+}
+
+
+/* =========================================================
+   HOME PAGE
+========================================================= */
+
+function homePage() {
+
+    let cards = "";
+
+    for (const [key, sport] of Object.entries(SPORTS)) {
+
+        cards += `
+        <div
+            class="card"
+            onclick="navigate('sport/${key}')">
+
+            <h3>${escapeHTML(sport.league)}</h3>
+
+            <div class="muted">
+                ${escapeHTML(sport.name)}
+            </div>
+
+            <p>
+                ${
+                    sport.teamSport
+                    ?
+                    "Explore professional teams, history, records, players and coaches."
+                    :
+                    "Explore the history and greatest players of the sport."
+                }
+            </p>
+
+        </div>
+        `;
+
+    }
+
+
+    app.innerHTML = `
+
+    <section class="hero">
+
+        <h1>
+            US Sports Oversimplified
+        </h1>
+
+        <p>
+            A simple place to learn about America's major sports,
+            professional teams, famous players, records and history.
+        </p>
+
+        <p>
+            Use the three-line menu at the top to choose a sport.
+            Team sports contain a list of professional teams.
+            Selecting a team opens its history, timeline,
+            records, greatest players, coaches and current roster.
+        </p>
+
+    </section>
+
+
+    <section class="section">
+
+        <h2>
+            Explore Sports
+        </h2>
+
+        <div class="grid">
+
+            ${cards}
+
+        </div>
+
+    </section>
+
+    `;
+
+}
+
+
+/* =========================================================
+   SPORT PAGE
+========================================================= */
+
+async function sportPage(key) {
+
+    const sport = SPORTS[key];
+
+    if (!sport) {
+
+        homePage();
+
+        return;
+
+    }
+
+
+    if (!sport.teamSport) {
+
+        individualSportPage(key);
+
+        return;
+
+    }
+
+
+    app.innerHTML = `
+
+    <button
+        class="back-button"
+        onclick="navigate('')">
+
+        ← Home
+
+    </button>
+
+    <section class="hero">
+
+        <h1>
+            ${escapeHTML(sport.league)}
+        </h1>
+
+        <p>
+            ${escapeHTML(sport.name)}
+        </p>
+
+    </section>
+
+    <div
+        id="teamArea"
+        class="loading">
+
+        Loading professional teams...
+
+    </div>
+
+    `;
+
+
+    try {
+
+        const data = await getData(
+            `${ESPN_API}/${sport.path}/teams`
+        );
+
+
+        const teams =
+            data.sports?.[0]?.leagues?.[0]?.teams
+            ?.map(x => x.team || x)
+            ?.filter(x => x.id)
+            || [];
+
+
+        let teamHTML = `
+
+        <input
+            id="teamSearch"
+            class="search"
+            placeholder="Search teams..."
+        >
+
+        <div
+            id="teamGrid"
+            class="grid">
+
+        `;
+
+
+        for (const team of teams) {
+
+            const logo =
+                team.logos?.[0]?.href || "";
+
+
+            teamHTML += `
+
+            <div
+                class="card team"
+                onclick="navigate('team/${key}/${encodeURIComponent(team.id)}')">
+
+                <img
+                    class="team-logo"
+                    src="${escapeHTML(logo)}"
+                    onerror="this.style.display='none'"
+                >
+
+                <div>
+
+                    <h3>
+                        ${escapeHTML(team.displayName)}
+                    </h3>
+
+                    <div class="muted">
+                        ${escapeHTML(team.location || "")}
+                    </div>
+
+                </div>
+
+            </div>
+
+            `;
+
+        }
+
+
+        teamHTML += `</div>`;
+
+
+        document.getElementById("teamArea").innerHTML =
+            teamHTML;
+
+
+        document
+            .getElementById("teamSearch")
+            .addEventListener("input", function() {
+
+                const search =
+                    this.value.toLowerCase();
+
+
+                document
+                    .querySelectorAll("#teamGrid .card")
+                    .forEach(card => {
+
+                        card.style.display =
+                            card.innerText
+                                .toLowerCase()
+                                .includes(search)
+                                ?
+                                ""
+                                :
+                                "none";
+
+                    });
+
+            });
+
+
+    } catch (error) {
+
+        document.getElementById("teamArea").innerHTML = `
+
+        <div class="error">
+
+            The team list could not be loaded right now.
+            Try refreshing the page.
+
+        </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   INDIVIDUAL SPORT PAGE
+========================================================= */
+
+function individualSportPage(key) {
+
+    const sport = SPORTS[key];
+
+    const information =
+        INDIVIDUAL_SPORTS[key];
+
+
+    let playersHTML = "";
+
+
+    information.players.forEach((player, index) => {
+
+        playersHTML += `
+
+        <div class="card">
+
+            <h3>
+                ${index + 1}.
+                ${escapeHTML(player)}
+            </h3>
+
+            <p class="muted">
+                One of the notable players in
+                ${escapeHTML(sport.league)} history.
+            </p>
+
+        </div>
+
+        `;
+
+    });
+
+
+    app.innerHTML = `
+
+    <button
+        class="back-button"
+        onclick="navigate('')">
+
+        ← Home
+
+    </button>
+
+
+    <section class="hero">
+
+        <h1>
+            ${escapeHTML(sport.league)}
+        </h1>
+
+        <p>
+            ${escapeHTML(information.history)}
+        </p>
+
+    </section>
+
+
+    <section class="section">
+
+        <h2>
+            Top Players Ever
+        </h2>
+
+        <div class="grid">
+
+            ${playersHTML}
+
+        </div>
+
+    </section>
+
+    `;
+
+}
+
+
+/* =========================================================
+   TEAM PAGE
+========================================================= */
+
+async function teamPage(sportKey, teamID) {
+
+    const sport = SPORTS[sportKey];
+
+
+    app.innerHTML = `
+
+    <button
+        class="back-button"
+        onclick="navigate('sport/${sportKey}')">
+
+        ← Back to ${escapeHTML(sport.league)}
+
+    </button>
+
+
+    <div
+        id="teamPage"
+        class="loading">
+
+        Loading team information...
+
+    </div>
+
+    `;
+
+
+    const baseURL =
+        `${ESPN_API}/${sport.path}/teams/${encodeURIComponent(teamID)}`;
+
+
+    try {
+
+        const results =
+            await Promise.allSettled([
+
+                getData(baseURL),
+
+                getData(baseURL + "/roster"),
+
+                getData(baseURL + "/history"),
+
+                getData(baseURL + "/record"),
+
+                getData(baseURL + "/leaders"),
+
+                getData(
+                    WIKIPEDIA_API
+                    +
+                    encodeURIComponent(
+                        teamID.replaceAll("_", " ")
+                    )
+                )
+
+            ]);
+
+
+        const getResult = index => {
+
+            if (
+                results[index].status ===
+                "fulfilled"
+            ) {
+
+                return results[index].value;
+
+            }
+
+            return null;
+
+        };
+
+
+        const teamData =
+            getResult(0);
+
+        const rosterData =
+            getResult(1);
+
+        const historyData =
+            getResult(2);
+
+        const recordData =
+            getResult(3);
+
+        const leadersData =
+            getResult(4);
+
+        const wikiData =
+            getResult(5);
+
+
+        const team =
+            teamData?.team ||
+            teamData;
+
+
+        if (!team) {
+
+            throw new Error(
+                "Team information unavailable."
+            );
+
+        }
+
+
+        /* LOGO */
+
+        const logo =
+            team.logos?.[0]?.href || "";
+
+
+        /* ROSTER */
+
+        let players = [];
+
+
+        if (Array.isArray(
+            rosterData?.athletes
+        )) {
+
+            players =
+                rosterData.athletes;
+
+        }
+
+
+        if (
+            rosterData?.athletes?.[0]?.items
+        ) {
+
+            players =
+                rosterData.athletes
+                    .flatMap(
+                        group =>
+                            group.items || []
+                    );
+
+        }
+
+
+        /* RECORD */
+
+        let record =
+            recordData?.items?.[0]
+            ||
+            recordData?.record?.items?.[0]
+            ||
+            recordData?.record
+            ||
+            recordData;
+
+
+        let recordText =
+            record?.summary
+            ||
+            record?.displayValue
+            ||
+            "Not available";
+
+
+        /* HISTORY */
+
+        let history = [];
+
+
+        const possibleHistory = [
+
+            historyData?.events,
+
+            historyData?.seasons,
+
+            historyData?.history,
+
+            historyData?.items,
+
+            historyData?.records
+
+        ];
+
+
+        for (
+            const list of possibleHistory
+        ) {
+
+            if (Array.isArray(list)) {
+
+                history.push(...list);
+
+            }
+
+        }
+
+
+        history =
+            history
+                .map(item => {
+
+                    const year =
+                        item.year
+                        ||
+                        item.season?.year
+                        ||
+                        item.season?.displayName
+                        ||
+                        item.date;
+
+
+                    const description =
+                        item.description
+                        ||
+                        item.summary
+                        ||
+                        item.displayValue
+                        ||
+                        item.record?.summary;
+
+
+                    if (
+                        year &&
+                        description
+                    ) {
+
+                        return {
+
+                            year,
+                            description
+
+                        };
+
+                    }
+
+                    return null;
+
+                })
+                .filter(Boolean);
+
+
+        /* BEST AND WORST */
+
+        let seasonRecords =
+            history
+                .map(item => {
+
+                    const match =
+                        String(
+                            item.description
+                        ).match(
+                            /(\d+)[-–](\d+)/
+                        );
+
+
+                    if (!match) {
+
+                        return null;
+
+                    }
+
+
+                    return {
+
+                        year: item.year,
+
+                        description:
+                            item.description,
+
+                        wins:
+                            Number(match[1]),
+
+                        losses:
+                            Number(match[2])
+
+                    };
+
+                })
+                .filter(Boolean);
+
+
+        let bestSeason = null;
+        let worstSeason = null;
+
+
+        if (seasonRecords.length) {
+
+            bestSeason =
+                [...seasonRecords]
+                    .sort(
+                        (a,b) =>
+                            (b.wins-b.losses)
+                            -
+                            (a.wins-a.losses)
+                    )[0];
+
+
+            worstSeason =
+                [...seasonRecords]
+                    .sort(
+                        (a,b) =>
+                            (a.wins-a.losses)
+                            -
+                            (b.wins-b.losses)
+                    )[0];
+
+        }
+
+
+        /* LEADERS */
+
+        let leaders = [];
+
+
+        if (
+            Array.isArray(
+                leadersData?.leaders
+            )
+        ) {
+
+            leadersData.leaders
+                .forEach(category => {
+
+                    (
+                        category.leaders || []
+                    ).forEach(leader => {
+
+                        const name =
+                            leader.athlete
+                                ?.displayName
+                            ||
+                            leader.athlete
+                                ?.fullName;
+
+
+                        if (name) {
+
+                            leaders.push(
+                                `${
+                                    category.displayName
+                                    ||
+                                    category.name
+                                    ||
+                                    "Leader"
+                                }: ${name}`
+                            );
+
+                        }
+
+                    });
+
+                });
+
+        }
+
+
+        leaders =
+            [...new Set(leaders)];
+
+
+        /* HISTORY PARAGRAPH */
+
+        const historyParagraph =
+            wikiData?.extract
+            ||
+            `The ${team.displayName} are a professional ${sport.name.toLowerCase()} team. Their history includes the seasons, players, coaches and important events shown below.`;
+
+
+        /* ROSTER HTML */
+
+        let rosterHTML = "";
+
+
+        if (players.length) {
+
+            players.forEach(player => {
+
+                const name =
+                    player.fullName
+                    ||
+                    player.displayName
+                    ||
+                    player.name
+                    ||
+                    "Unknown player";
+
+
+                const position =
+                    player.position?.displayName
+                    ||
+                    player.position?.abbreviation
+                    ||
+                    "";
+
+
+                const number =
+                    player.jersey
+                    ?
+                    ` #${player.jersey}`
+                    :
+                    "";
+
+
+                rosterHTML += `
+
+                <div class="player">
+
+                    <b>
+                        ${escapeHTML(name)}
+                    </b>
+
+                    <br>
+
+                    <span class="muted">
+
+                        ${escapeHTML(position)}
+                        ${escapeHTML(number)}
+
+                    </span>
+
+                </div>
+
+                `;
+
+            });
+
+        } else {
+
+            rosterHTML =
+                `<p class="muted">
+                    Current roster information is unavailable.
+                </p>`;
+
+        }
+
+
+        /* LEADER HTML */
+
+        let leaderHTML = "";
+
+
+        if (leaders.length) {
+
+            leaders.forEach(leader => {
+
+                leaderHTML += `
+
+                <span class="pill">
+
+                    ${escapeHTML(leader)}
+
+                </span>
+
+                `;
+
+            });
+
+        } else {
+
+            leaderHTML =
+                `<p class="muted">
+                    Leader information is unavailable.
+                </p>`;
+
+        }
+
+
+        /* TIMELINE */
+
+        let timelineHTML = "";
+
+
+        if (history.length) {
+
+            history
+                .sort(
+                    (a,b) =>
+                        String(a.year)
+                        .localeCompare(
+                            String(b.year)
+                        )
+                )
+                .forEach(event => {
+
+                    timelineHTML += `
+
+                    <div class="timeline-event">
+
+                        <div class="timeline-year">
+
+                            ${escapeHTML(event.year)}
+
+                        </div>
+
+                        <div>
+
+                            ${escapeHTML(
+                                event.description
+                            )}
+
+                        </div>
+
+                    </div>
+
+                    `;
+
+                });
+
+        } else {
+
+            timelineHTML = `
+
+            <p class="muted">
+
+                A detailed timeline is
+                unavailable from the live
+                historical data source.
+
+            </p>
+
+            `;
+
+        }
+
+
+        /* BEST SEASON */
+
+        let bestText =
+            bestSeason
+            ?
+            `${bestSeason.year} — ${bestSeason.description}`
+            :
+            "Not available";
+
+
+        /* WORST SEASON */
+
+        let worstText =
+            worstSeason
+            ?
+            `${worstSeason.year} — ${worstSeason.description}`
+            :
+            "Not available";
+
+
+        /* FINAL PAGE */
+
+        document.getElementById(
+            "teamPage"
+        ).innerHTML = `
+
+
+        <!-- TEAM HEADER -->
+
+        <section class="hero">
+
+            <div class="team">
+
+                <img
+                    src="${escapeHTML(logo)}"
+                    class="team-logo large-logo"
+                    onerror="this.style.display='none'"
+                >
+
+                <div>
+
+                    <h1>
+                        ${escapeHTML(
+                            team.displayName
+                        )}
+                    </h1>
+
+                    <div class="muted">
+
+                        ${escapeHTML(
+                            team.location || ""
+                        )}
+
+                        ·
+
+                        ${escapeHTML(
+                            team.abbreviation || ""
+                        )}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <p>
+
+                ${escapeHTML(
+                    historyParagraph
+                )}
+
+            </p>
+
+        </section>
+
+
+        <!-- RECORDS -->
+
+        <section class="section">
+
+            <h2>
+                Records & Seasons
+            </h2>
+
+            <div class="stats">
+
+
+                <div class="stat">
+
+                    <span class="muted">
+                        Available Record
+                    </span>
+
+                    <strong>
+                        ${escapeHTML(
+                            recordText
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span class="muted">
+                        Best Season
+                    </span>
+
+                    <strong>
+                        ${escapeHTML(
+                            bestText
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span class="muted">
+                        Worst Season
+                    </span>
+
+                    <strong>
+                        ${escapeHTML(
+                            worstText
+                        )}
+                    </strong>
+
+                </div>
+
+
+                <div class="stat">
+
+                    <span class="muted">
+                        Historical Entries
+                    </span>
+
+                    <strong>
+                        ${history.length}
+                    </strong>
+
+                </div>
+
+
+            </div>
+
+
+            <div class="notice section">
+
+                All-time win/loss numbers are shown
+                when the historical sports-data source
+                provides them. The site does not invent
+                statistics when a source does not provide
+                them.
+
+            </div>
+
+        </section>
+
+
+        <!-- TOP PLAYERS -->
+
+        <section class="section">
+
+            <div class="hero">
+
+                <h2>
+                    Top Players & Leaders
+                </h2>
+
+                ${leaderHTML}
+
+            </div>
+
+        </section>
+
+
+        <!-- COACHES -->
+
+        <section class="section">
+
+            <div class="hero">
+
+                <h2>
+                    Coaches / Managers
+                </h2>
+
+                <p class="muted">
+
+                    Current coaching information is
+                    displayed when supplied by the
+                    sports-data source. Historical
+                    coaching records can be connected
+                    to a dedicated historical database.
+
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- CURRENT PLAYERS -->
+
+        <section class="section">
+
+            <div class="hero">
+
+                <h2>
+                    Current Players
+                </h2>
+
+                <div class="roster">
+
+                    ${rosterHTML}
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- HISTORY -->
+
+        <section class="section">
+
+            <div class="hero">
+
+                <h2>
+                    History Timeline
+                </h2>
+
+                <div class="timeline">
+
+                    ${timelineHTML}
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SOURCE -->
+
+        <section class="section">
+
+            <p class="muted">
+
+                Live team, roster, record and leader
+                information is loaded from public sports
+                data endpoints. Historical team descriptions
+                may use Wikipedia's public summary service.
+
+            </p>
+
+        </section>
+
+        `;
+
+
+    } catch (error) {
+
+        document.getElementById(
+            "teamPage"
+        ).innerHTML = `
+
+        <div class="error">
+
+            This team's information could not
+            be loaded right now.
+
+            <br><br>
+
+            Try refreshing the page.
+
+        </div>
+
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   ROUTER
+========================================================= */
+
+async function renderPage() {
+
+    const route = getRoute();
+
+
+    if (route.length === 0) {
+
+        homePage();
+
+        return;
+
+    }
+
+
+    if (
+        route[0] === "sport"
+    ) {
+
+        await sportPage(
+            route[1]
+        );
+
+        return;
+
+    }
+
+
+    if (
+        route[0] === "team"
+    ) {
+
+        await teamPage(
+            route[1],
+            route[2]
+        );
+
+        return;
+
+    }
+
+
+    homePage();
+
+}
+
+
+/* =========================================================
+   START WEBSITE
+========================================================= */
+
+buildMenu();
+
+window.addEventListener(
+    "hashchange",
+    renderPage
+);
+
+renderPage();
+
+</script>
+
+</body>
+</html>
